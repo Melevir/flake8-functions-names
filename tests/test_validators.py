@@ -80,7 +80,7 @@ def test_validate_load_from_raises_error_for_load_without_from(
         'have_enough_gold',
         'can_access_page',
         'check_if_user_is_active',
-    ]
+    ],
 )
 def test_validate_returns_bool_and_name_shows_it_raises_no_error_for_ok_function(
     function_name,
@@ -99,7 +99,7 @@ def test_validate_returns_bool_and_name_shows_it_raises_no_error_for_ok_function
         'enough_gold',
         'access',
         'if_user_is_active',
-    ]
+    ],
 )
 def test_validate_returns_bool_and_name_shows_it_raises_error_for_nonbool_names(
     function_name,
@@ -120,9 +120,9 @@ def test_validate_returns_bool_and_name_shows_it_raises_error_for_nonbool_names(
         ('calculate_data', 'deal.pure', False),
         ('clean_form_data', None, True),
         ('clean_form_data', 'pure', False),
-    ]
+    ],
 )
-def test_validate_names_says_its_pure_and_its_pure_works_for_different_functions(
+def test_validate_names_says_its_pure_and_its_pure_works_for_different_functions(  # noqa: CFQ003
     function_name, decorator, has_error,
     funcdef_factory,
 ):
@@ -142,7 +142,7 @@ def test_validate_names_says_its_pure_and_its_pure_works_for_different_functions
         ('fetch_data', False),
         ('process_data', False),
         ('fetch_and_process_data', True),
-    ]
+    ],
 )
 def test_validate_no_blacklisted_words_in_name_works_for_different_functions(
     function_name, has_error,
@@ -164,7 +164,7 @@ def test_validate_no_blacklisted_words_in_name_works_for_different_functions(
         ('is_active_for_user', [], False),
         ('is_active_for_user', ['user'], True),
         ('is_active_for', ['user'], False),
-    ]
+    ],
 )
 def test_validate_name_not_endswith_first_argument_name_works_for_different_functions(
     function_name, arguments, has_error,

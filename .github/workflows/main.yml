@@ -33,3 +33,7 @@ jobs:
         run: pip install -e .
       - name: Run tests
         run: pytest .
+      - name: Run flake8
+        run: flake8 .
+      - name: Run mypy
+        run: mypy flake8_functions_names
