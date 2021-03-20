@@ -1,4 +1,5 @@
 import ast
+from typing import List
 
 import pytest
 
@@ -7,6 +8,24 @@ from flake8_functions_names.custom_types import FuncdefInfo
 
 def _generate_funcdef_info(funcdef: str) -> FuncdefInfo:
     return FuncdefInfo(ast.parse(funcdef + ':\n    pass').body[0])
+
+
+@pytest.fixture
+def funcdef_factory():
+    def factory(
+        name: str,
+        return_type: str = None,
+        decorator: str = None,
+        arguments: List[str] = None,
+    ) -> FuncdefInfo:
+        arguments_str = ', '.join(arguments) if arguments else ''
+        funcdef_str = f'def {name}({arguments_str})'
+        if return_type:
+            funcdef_str = f'{funcdef_str} -> {return_type}'
+        if decorator:
+            funcdef_str = f'@{decorator}\n{funcdef_str}'
+        return _generate_funcdef_info(funcdef_str)
+    return factory
 
 
 @pytest.fixture
