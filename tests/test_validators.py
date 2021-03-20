@@ -12,7 +12,6 @@ def test_validate_returns_bool_if_names_said_so_raises_no_error_for_ok_function(
     assert not validate_returns_bool_if_names_said_so(fine_funcdef_info)
 
 
-@pytest.mark.xfail
 def test_validate_returns_bool_if_names_said_so_raises_error_for_nonbool_result_type(
     funcdef_for_bool_without_bool_result,
 ):

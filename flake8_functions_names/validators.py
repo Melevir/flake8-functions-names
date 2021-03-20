@@ -4,6 +4,11 @@ from flake8_functions_names.custom_types import FuncdefInfo
 
 
 def validate_returns_bool_if_names_said_so(funcdef: FuncdefInfo) -> List[str]:
+    if funcdef.is_name_looks_like_question and funcdef.return_type != 'bool':
+        return [
+            f'FNE001 Name of the function says, that is should '
+            f'return bool, but it returns {funcdef.return_type}',
+        ]
     return []
 
 
