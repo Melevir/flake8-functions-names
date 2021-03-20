@@ -32,7 +32,7 @@ class FuncdefInfo(NamedTuple):
         return [e.id for e in ast.walk(self.raw_funcdef.returns) if isinstance(e, ast.Name)][0]
 
     @property
-    def is_name_looks_like_question(self):
+    def is_name_looks_like_question(self) -> bool:
         return (
             self.name_words[0] in {'is', 'have', 'has', 'can'}
             or self.name_words[:2] == ['check', 'if']
