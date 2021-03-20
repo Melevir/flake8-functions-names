@@ -27,3 +27,9 @@ jobs:
         run: gem install mdl
       - name: Run mdl
         run: mdl --style=.mdlrc.rb .
+      - name: Install requirements
+        run: pip install -r requirements_dev.txt
+      - name: Install self
+        run: pip install -e .
+      - name: Run tests
+        run: pytest .
