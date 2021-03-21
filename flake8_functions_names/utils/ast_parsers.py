@@ -1,8 +1,16 @@
+from __future__ import annotations
+
 import ast
-from typing import Union
-
-from flake8_functions_names.custom_types import FuncdefInfo
+from typing import Union, Optional
 
 
-def parse_funcdef(funcdef: Union[ast.FunctionDef, ast.AsyncFunctionDef]) -> FuncdefInfo:
-    pass
+def extract_decorator_str_respresentation(
+    decorator_node: Union[ast.Name, ast.Attribute, ast.Call],
+) -> Optional[str]:
+    if isinstance(decorator_node, ast.Name):
+        return decorator_node.id
+    elif isinstance(decorator_node, ast.Attribute) and isinstance(decorator_node.value, ast.Name):
+        return f'{decorator_node.value.id}.{decorator_node.attr}'
+    elif isinstance(decorator_node, ast.Call):
+        return extract_decorator_str_respresentation(decorator_node.func)
+    return None

@@ -1,7 +1,7 @@
 from typing import List
 
 from flake8_functions_names.custom_types import FuncdefInfo
-from flake8_functions_names.verbs import VERBS
+from flake8_functions_names.verbs import VERBS, PURE_VERBS
 
 
 def validate_returns_bool_if_names_said_so(funcdef: FuncdefInfo) -> List[str]:
@@ -47,7 +47,12 @@ def validate_returns_bool_and_name_shows_it(funcdef: FuncdefInfo) -> List[str]:
     return []
 
 
-def validate_names_says_its_pure_and_its_pure(funcdef: FuncdefInfo) -> List[str]:
+def validate_names_says_its_pure_and_its_pure(funcdef: FuncdefInfo) -> List[str]:  # noqa: CFQ003
+    if not funcdef.has_deal_pure_decorator and any(w in PURE_VERBS for w in funcdef.name_words):
+        return [
+            'FNE006 Name of function says, that it works with data, '
+            'so it should be pure, but it has no @dead.pure()',
+        ]
     return []
 
 

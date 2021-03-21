@@ -2,7 +2,7 @@ import ast
 from typing import Generator, Tuple
 
 from flake8_functions_names import __version__ as version
-from flake8_functions_names.utils.ast_parsers import parse_funcdef
+from flake8_functions_names.custom_types import FuncdefInfo
 from flake8_functions_names.validators import (
     validate_returns_bool_if_names_said_so,
     validate_has_property_and_no_verbs, validate_save_to, validate_load_from,
@@ -36,7 +36,7 @@ class FunctionsNamesChecker:
             if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef))
         )
         for funcdef in funcdefs:
-            funcdef_details = parse_funcdef(funcdef)
+            funcdef_details = FuncdefInfo(raw_funcdef=funcdef)
             for validator in self.validators:
                 errors = validator(funcdef_details)
                 for error in errors:

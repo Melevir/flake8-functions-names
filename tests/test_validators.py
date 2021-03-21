@@ -106,13 +106,13 @@ def test_validate_returns_bool_and_name_shows_it_raises_error_for_nonbool_names(
     assert actual_result[0].startswith('FNE005')
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize(
     'function_name, decorator, has_error',
     [
         ('print_settings', None, False),
         ('calculate_data', None, True),
         ('calculate_data', 'deal.pure', False),
+        ('calculate_data', 'deal.pure()', False),
         ('clean_form_data', None, True),
         ('clean_form_data', 'pure', False),
     ],
