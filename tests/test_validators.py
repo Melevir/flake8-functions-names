@@ -130,7 +130,6 @@ def test_validate_names_says_its_pure_and_its_pure_works_for_different_functions
         assert not actual_result
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize(
     'function_name, has_error',
     [
@@ -147,7 +146,7 @@ def test_validate_no_blacklisted_words_in_name_works_for_different_functions(
     actual_result = validate_no_blacklisted_words_in_name(funcdef)
     if has_error:
         assert len(actual_result) == 1
-        assert actual_result[0].startswith('FNE006')
+        assert actual_result[0].startswith('FNE007')
     else:
         assert not actual_result
 
@@ -169,6 +168,6 @@ def test_validate_name_not_endswith_first_argument_name_works_for_different_func
     actual_result = validate_name_not_endswith_first_argument_name(funcdef)
     if has_error:
         assert len(actual_result) == 1
-        assert actual_result[0].startswith('FNE006')
+        assert actual_result[0].startswith('FNE008')
     else:
         assert not actual_result

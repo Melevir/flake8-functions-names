@@ -1,3 +1,7 @@
+BLACKLISTED_WORDS_IN_FUNCTIONS_NAMES = {
+    'and',
+}
+
 PURE_VERBS = {
     'calculate',
     'extract',

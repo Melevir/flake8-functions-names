@@ -1,7 +1,7 @@
 from typing import List
 
 from flake8_functions_names.custom_types import FuncdefInfo
-from flake8_functions_names.verbs import VERBS, PURE_VERBS
+from flake8_functions_names.words import VERBS, PURE_VERBS, BLACKLISTED_WORDS_IN_FUNCTIONS_NAMES
 
 
 def validate_returns_bool_if_names_said_so(funcdef: FuncdefInfo) -> List[str]:
@@ -57,6 +57,11 @@ def validate_names_says_its_pure_and_its_pure(funcdef: FuncdefInfo) -> List[str]
 
 
 def validate_no_blacklisted_words_in_name(funcdef: FuncdefInfo) -> List[str]:
+    blacklisted_words = [w for w in funcdef.name_words if w in BLACKLISTED_WORDS_IN_FUNCTIONS_NAMES]
+    if blacklisted_words:
+        return [
+            f'FNE007 "{blacklisted_words[0]}" is not recommended in functions names',
+        ]
     return []
 
 
