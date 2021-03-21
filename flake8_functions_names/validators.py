@@ -40,6 +40,10 @@ def validate_load_from(funcdef: FuncdefInfo) -> List[str]:
 
 
 def validate_returns_bool_and_name_shows_it(funcdef: FuncdefInfo) -> List[str]:
+    if funcdef.return_type == 'bool' and not funcdef.is_name_looks_like_question:
+        return [
+            "FNE005 Return type of the function is bool, but the name doesn't shows it",
+        ]
     return []
 
 

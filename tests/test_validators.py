@@ -86,7 +86,6 @@ def test_validate_returns_bool_and_name_shows_it_raises_no_error_for_ok_function
     assert not validate_returns_bool_and_name_shows_it(funcdef)
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize(
     'function_name',
     [
