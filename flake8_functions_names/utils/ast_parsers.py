@@ -3,7 +3,10 @@ from __future__ import annotations
 import ast
 from typing import Optional
 
+import deal
 
+
+@deal.pure
 def extract_decorator_str_respresentation(
     decorator_node: ast.expr,
 ) -> Optional[str]:

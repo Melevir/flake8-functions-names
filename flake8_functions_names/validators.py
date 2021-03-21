@@ -1,9 +1,13 @@
 from typing import List
 
+import deal
+
 from flake8_functions_names.custom_types import FuncdefInfo
+from flake8_functions_names.utils.imports import is_module_installed
 from flake8_functions_names.words import VERBS, PURE_VERBS, BLACKLISTED_WORDS_IN_FUNCTIONS_NAMES
 
 
+@deal.pure
 def validate_returns_bool_if_names_said_so(funcdef: FuncdefInfo) -> List[str]:
     if funcdef.is_name_looks_like_question and funcdef.return_type != 'bool':
         return [
@@ -13,7 +17,8 @@ def validate_returns_bool_if_names_said_so(funcdef: FuncdefInfo) -> List[str]:
     return []
 
 
-def validate_has_property_and_no_verbs(funcdef: FuncdefInfo) -> List[str]:
+@deal.pure
+def validate_has_property_and_no_verbs(funcdef: FuncdefInfo) -> List[str]:  # noqa: FNE007
     if funcdef.has_property_decorator and any(w in VERBS for w in funcdef.name_words):
         verbs = [w for w in funcdef.name_words if w in VERBS]
         return [
@@ -23,6 +28,7 @@ def validate_has_property_and_no_verbs(funcdef: FuncdefInfo) -> List[str]:
     return []
 
 
+@deal.pure
 def validate_save_to(funcdef: FuncdefInfo) -> List[str]:
     if 'save' in funcdef.name_words and 'to' not in funcdef.name_words:
         return [
@@ -31,6 +37,7 @@ def validate_save_to(funcdef: FuncdefInfo) -> List[str]:
     return []
 
 
+@deal.pure
 def validate_load_from(funcdef: FuncdefInfo) -> List[str]:
     if 'load' in funcdef.name_words and 'from' not in funcdef.name_words:
         return [
@@ -39,7 +46,8 @@ def validate_load_from(funcdef: FuncdefInfo) -> List[str]:
     return []
 
 
-def validate_returns_bool_and_name_shows_it(funcdef: FuncdefInfo) -> List[str]:
+@deal.pure
+def validate_returns_bool_and_name_shows_it(funcdef: FuncdefInfo) -> List[str]:  # noqa: FNE007
     if funcdef.return_type == 'bool' and not funcdef.is_name_looks_like_question:
         return [
             "FNE005 Return type of the function is bool, but the name doesn't shows it",
@@ -47,15 +55,23 @@ def validate_returns_bool_and_name_shows_it(funcdef: FuncdefInfo) -> List[str]:
     return []
 
 
-def validate_names_says_its_pure_and_its_pure(funcdef: FuncdefInfo) -> List[str]:  # noqa: CFQ003
-    if not funcdef.has_deal_pure_decorator and any(w in PURE_VERBS for w in funcdef.name_words):
+@deal.pure
+def validate_names_says_its_pure_and_its_pure(  # noqa: CFQ003, FNE007
+    funcdef: FuncdefInfo,
+) -> List[str]:
+    if (
+        is_module_installed('deal')
+        and not funcdef.has_deal_pure_decorator
+        and any(w in PURE_VERBS for w in funcdef.name_words)
+    ):
         return [
             'FNE006 Name of function says, that it works with data, '
-            'so it should be pure, but it has no @dead.pure()',
+            'so it should be pure, but it has no @deal.pure()',
         ]
     return []
 
 
+@deal.pure
 def validate_no_blacklisted_words_in_name(funcdef: FuncdefInfo) -> List[str]:
     blacklisted_words = [w for w in funcdef.name_words if w in BLACKLISTED_WORDS_IN_FUNCTIONS_NAMES]
     if blacklisted_words:
@@ -65,5 +81,6 @@ def validate_no_blacklisted_words_in_name(funcdef: FuncdefInfo) -> List[str]:
     return []
 
 
+@deal.pure
 def validate_name_not_endswith_first_argument_name(funcdef: FuncdefInfo) -> List[str]:
     return []

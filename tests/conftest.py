@@ -1,11 +1,13 @@
 import ast
 from typing import List
 
+import deal
 import pytest
 
 from flake8_functions_names.custom_types import FuncdefInfo
 
 
+@deal.pure
 def _generate_funcdef_info(funcdef: str) -> FuncdefInfo:
     return FuncdefInfo(ast.parse(funcdef + ':\n    pass').body[0])
 

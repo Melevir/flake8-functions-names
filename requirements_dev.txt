@@ -1,5 +1,7 @@
 pytest==6.2.2
 
+deal==4.5.0
+
 mypy==0.812
 
 pydocstyle==5.1.1

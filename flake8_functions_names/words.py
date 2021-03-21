@@ -546,7 +546,6 @@ VERBS = PURE_VERBS.union({
     'retokenize',
     'retrieve',
     'retry',
-    'return',
     'reuse',
     'reverse',
     'revert',
