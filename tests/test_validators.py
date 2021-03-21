@@ -44,7 +44,6 @@ def test_validate_save_to_raises_no_error_for_ok_function(
     assert not validate_save_to(fine_funcdef_save_to)
 
 
-@pytest.mark.xfail
 def test_validate_save_to_raises_error_for_save_without_to(
     fine_funcdef_save_without_to,
 ):

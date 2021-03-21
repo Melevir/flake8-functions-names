@@ -24,6 +24,10 @@ def validate_has_property_and_no_verbs(funcdef: FuncdefInfo) -> List[str]:
 
 
 def validate_save_to(funcdef: FuncdefInfo) -> List[str]:
+    if 'save' in funcdef.name_words and 'to' not in funcdef.name_words:
+        return [
+            'FNE003 Name of the function uses "save", but not uses "to"',
+        ]
     return []
 
 

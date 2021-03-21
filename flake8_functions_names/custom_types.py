@@ -7,7 +7,7 @@ class FuncdefInfo(NamedTuple):
 
     @property
     def name(self) -> str:
-        return self.raw_funcdef.name
+        return self.raw_funcdef.name.lower()
 
     @property
     def name_words(self) -> List[str]:
