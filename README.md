@@ -1,5 +1,8 @@
 # flake8-functions-names
 
+[![PyPI version](https://badge.fury.io/py/flake8-functions-names.svg)](https://badge.fury.io/py/flake8-functions-names)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/flake8-functions-names)
+
 An extension for flake8 that validates functions names, decomposition and
 conformity with annotations. The plugin also has some validations
 of [deal](https://github.com/life4/deal) contracts.

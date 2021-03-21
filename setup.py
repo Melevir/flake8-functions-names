@@ -24,7 +24,7 @@ setup(
     name=package_name,
     description=(
         'An extension for flake8 that validates functions names, '
-        'decomposition and conformity with annotations.',
+        'decomposition and conformity with annotations.'
     ),
     classifiers=[
         'Environment :: Console',
