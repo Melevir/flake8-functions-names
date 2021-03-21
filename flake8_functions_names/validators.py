@@ -1,6 +1,7 @@
 from typing import List
 
 from flake8_functions_names.custom_types import FuncdefInfo
+from flake8_functions_names.verbs import VERBS
 
 
 def validate_returns_bool_if_names_said_so(funcdef: FuncdefInfo) -> List[str]:
@@ -13,6 +14,12 @@ def validate_returns_bool_if_names_said_so(funcdef: FuncdefInfo) -> List[str]:
 
 
 def validate_has_property_and_no_verbs(funcdef: FuncdefInfo) -> List[str]:
+    if funcdef.has_property_decorator and any(w in VERBS for w in funcdef.name_words):
+        verbs = [w for w in funcdef.name_words if w in VERBS]
+        return [
+            f"FNE002 The method has a @property decorator, "
+            f"but has verb in it's name ({', '.join(verbs)})",
+        ]
     return []
 
 

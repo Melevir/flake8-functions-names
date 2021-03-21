@@ -15,7 +15,7 @@ class FuncdefInfo(NamedTuple):
 
     @property
     def has_property_decorator(self) -> bool:
-        return False
+        return 'property' in self.decorators_names
 
     @property
     def has_deal_pure_decorator(self) -> bool:
@@ -37,3 +37,7 @@ class FuncdefInfo(NamedTuple):
             self.name_words[0] in {'is', 'have', 'has', 'can'}
             or self.name_words[:2] == ['check', 'if']
         )
+
+    @property
+    def decorators_names(self) -> List[str]:
+        return [d.id for d in self.raw_funcdef.decorator_list if isinstance(d, ast.Name)]

@@ -28,7 +28,6 @@ def test_validate_has_property_and_no_verbs_raises_no_error_for_ok_function(
     assert not validate_has_property_and_no_verbs(fine_funcdef_with_property)
 
 
-@pytest.mark.xfail
 def test_validate_has_property_and_no_verbs_raises_error_for_propery_with_verb(
     funcdef_with_property_and_verb,
 ):
