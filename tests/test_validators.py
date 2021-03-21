@@ -151,7 +151,6 @@ def test_validate_no_blacklisted_words_in_name_works_for_different_functions(
         assert not actual_result
 
 
-@pytest.mark.xfail
 @pytest.mark.parametrize(
     'function_name, arguments, has_error',
     [

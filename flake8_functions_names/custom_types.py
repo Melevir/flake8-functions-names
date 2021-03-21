@@ -25,7 +25,7 @@ class FuncdefInfo(NamedTuple):
 
     @property
     def arguments_names(self) -> List[str]:
-        return []
+        return [a.arg for a in ast.walk(self.raw_funcdef.args) if isinstance(a, ast.arg)]
 
     @property
     def return_type(self) -> Optional[str]:

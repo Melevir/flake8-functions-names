@@ -83,4 +83,8 @@ def validate_no_blacklisted_words_in_name(funcdef: FuncdefInfo) -> List[str]:
 
 @deal.pure
 def validate_name_not_endswith_first_argument_name(funcdef: FuncdefInfo) -> List[str]:
+    if funcdef.arguments_names and funcdef.name.endswith(f'_{funcdef.arguments_names[0]}'):
+        return [
+            "FNE008 Name of functions endswith it's first argument name",
+        ]
     return []
