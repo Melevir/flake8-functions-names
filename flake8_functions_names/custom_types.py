@@ -31,7 +31,8 @@ class FuncdefInfo(NamedTuple):
     def return_type(self) -> Optional[str]:
         if self.raw_funcdef.returns is None:
             return None
-        return [e.id for e in ast.walk(self.raw_funcdef.returns) if isinstance(e, ast.Name)][0]
+        return_types = [e.id for e in ast.walk(self.raw_funcdef.returns) if isinstance(e, ast.Name)]
+        return return_types[0] if return_types else None
 
     @property
     def is_name_looks_like_question(self) -> bool:

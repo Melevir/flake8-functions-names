@@ -1,8 +1,5 @@
 # flake8-functions-names
 
-**DISCLAIMER**: this is DDD project, so at the moment the documentation lies.
-If you're interested in the project, write me a note (t.me/melevir).
-
 An extension for flake8 that validates functions names, decomposition and
 conformity with annotations. The plugin also has some validations
 of [deal](https://github.com/life4/deal) contracts.
