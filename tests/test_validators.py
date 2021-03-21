@@ -60,7 +60,6 @@ def test_validate_load_from_raises_no_error_for_ok_function(
     assert not validate_load_from(fine_funcdef_load_from)
 
 
-@pytest.mark.xfail
 def test_validate_load_from_raises_error_for_load_without_from(
     fine_funcdef_load_without_from,
 ):

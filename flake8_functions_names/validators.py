@@ -32,6 +32,10 @@ def validate_save_to(funcdef: FuncdefInfo) -> List[str]:
 
 
 def validate_load_from(funcdef: FuncdefInfo) -> List[str]:
+    if 'load' in funcdef.name_words and 'from' not in funcdef.name_words:
+        return [
+            'FNE004 ame of the function uses "load", but not uses "from"',
+        ]
     return []
 
 
