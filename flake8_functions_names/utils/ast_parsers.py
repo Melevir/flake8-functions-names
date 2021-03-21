@@ -1,11 +1,11 @@
 from __future__ import annotations
 
 import ast
-from typing import Union, Optional
+from typing import Optional
 
 
 def extract_decorator_str_respresentation(
-    decorator_node: Union[ast.Name, ast.Attribute, ast.Call],
+    decorator_node: ast.expr,
 ) -> Optional[str]:
     if isinstance(decorator_node, ast.Name):
         return decorator_node.id

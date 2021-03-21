@@ -42,8 +42,8 @@ class FuncdefInfo(NamedTuple):
 
     @property
     def decorators_names(self) -> List[str]:
-        return [
+        decorators = [
             extract_decorator_str_respresentation(d)
             for d in self.raw_funcdef.decorator_list
-            if extract_decorator_str_respresentation(d)
         ]
+        return list(filter(None, decorators))
