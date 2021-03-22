@@ -120,7 +120,9 @@ def test_validate_returns_bool_and_name_shows_it_raises_error_for_nonbool_names(
 def test_validate_names_says_its_pure_and_its_pure_works_for_different_functions(  # noqa: CFQ003
     function_name, decorator, has_error,
     funcdef_factory,
+    mocker,
 ):
+    mocker.patch('flake8_functions_names.validators.is_module_installed', return_value=True)
     funcdef = funcdef_factory(name=function_name, return_type='bool', decorator=decorator)
     actual_result = validate_names_says_its_pure_and_its_pure(funcdef)
     if has_error:

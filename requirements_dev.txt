@@ -1,4 +1,5 @@
 pytest==6.2.2
+pytest-mock==3.5.1
 
 mypy==0.812
 
