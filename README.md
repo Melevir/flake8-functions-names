@@ -51,6 +51,6 @@ Tested on Python 3.8+ and flake8 3.9+.
 |   FNE003   | Name of the function uses "save", but not uses "to" |
 |   FNE004   | Name of the function uses "load", but not uses "from" |
 |   FNE005   | Return type of the function is bool, but the name doesn't shows it |
-|   FNE006   | Name of function says, that it works with data, so it should be pure, but it has no `@dead.pure()` |
+|   FNE006   | Name of function says, that it works with data, so it should be pure, but it has no `@deal.pure()` |
 |   FNE007   | "and" is not recommended in functions names |
 |   FNE008   | Name of functions endswith it's first argument name |
