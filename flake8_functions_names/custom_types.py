@@ -37,7 +37,7 @@ class FuncdefInfo(NamedTuple):
     @property
     def is_name_looks_like_question(self) -> bool:
         return (
-            self.name_words[0] in {'is', 'have', 'has', 'can'}
+            self.name_words[0] in {'is', 'are', 'have', 'has', 'can'}
             or self.name_words[:2] == ['check', 'if']
         )
 

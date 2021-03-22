@@ -86,7 +86,6 @@ VERBS = PURE_VERBS.union({
     'bake',
     'balance',
     'ban',
-    'be',
     'became',
     'begin',
     'believe',
