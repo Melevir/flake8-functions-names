@@ -19,7 +19,7 @@ def validate_has_property_and_no_verbs(funcdef: FuncdefInfo) -> List[str]:  # no
         verbs = [w for w in funcdef.name_words if w in VERBS]
         return [
             f'FNE002 The method has a @property decorator, '
-            f"but has verb in it's name ({', '.join(verbs)})",
+            f"but has a verb in it's name ({', '.join(verbs)})",
         ]
     return []
 
@@ -43,7 +43,7 @@ def validate_load_from(funcdef: FuncdefInfo) -> List[str]:
 def validate_returns_bool_and_name_shows_it(funcdef: FuncdefInfo) -> List[str]:  # noqa: FNE007
     if funcdef.return_type == 'bool' and not funcdef.is_name_looks_like_question:
         return [
-            "FNE005 Return type of the function is bool, but the name doesn't shows it",
+            "FNE005 Return type of the function is bool, but the name doesn't show it",
         ]
     return []
 
@@ -75,6 +75,6 @@ def validate_no_blacklisted_words_in_name(funcdef: FuncdefInfo) -> List[str]:
 def validate_name_not_endswith_first_argument_name(funcdef: FuncdefInfo) -> List[str]:
     if funcdef.arguments_names and funcdef.name.endswith(f'_{funcdef.arguments_names[0]}'):
         return [
-            "FNE008 Name of functions endswith it's first argument name",
+            "FNE008 Name of functions ends with it's first argument name",
         ]
     return []
