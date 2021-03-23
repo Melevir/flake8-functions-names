@@ -113,8 +113,8 @@ def test_validate_returns_bool_and_name_shows_it_raises_error_for_nonbool_names(
         ('calculate_data', None, True),
         ('calculate_data', 'deal.pure', False),
         ('calculate_data', 'deal.pure()', False),
-        ('clean_form_data', None, True),
-        ('clean_form_data', 'pure', False),
+        ('create_form_data', None, True),
+        ('create_form_data', 'pure', False),
     ],
 )
 def test_validate_names_says_its_pure_and_its_pure_works_for_different_functions(  # noqa: CFQ003
