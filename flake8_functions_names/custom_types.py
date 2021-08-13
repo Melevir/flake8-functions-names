@@ -13,7 +13,7 @@ class FuncdefInfo(NamedTuple):
 
     @property
     def name_words(self) -> List[str]:
-        return self.name.split('_')
+        return self.name.strip('_').split('_')
 
     @property
     def has_property_decorator(self) -> bool:

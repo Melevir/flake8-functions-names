@@ -50,7 +50,7 @@ Tested on Python 3.8+ and flake8 3.9+.
 |   FNE002   | The method has a `@property` decorator, but has a verb in it's name (*verb*) |
 |   FNE003   | Name of the function uses `save`, but not uses `to` |
 |   FNE004   | Name of the function uses `load`, but not uses `from` |
-|   FNE005   | Return type of the function is bool, but the name doesn't show it |
+|   FNE005   | ff |
 |   FNE006   | Name of function says, that it works with data, so it should be pure, but it has no `@deal.pure()` |
 |   FNE007   | `and` is not recommended in functions names |
 |   FNE008   | Name of functions ends with it's first argument name |
