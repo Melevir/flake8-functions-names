@@ -2,6 +2,7 @@ import ast
 from typing import NamedTuple, Union, List, Optional
 
 from flake8_functions_names.utils.ast_parsers import extract_decorator_str_respresentation
+from flake8_functions_names.words import DUNDER_BUILDINS_THAT_RETURNS_BOOL
 
 
 class FuncdefInfo(NamedTuple):
@@ -40,6 +41,10 @@ class FuncdefInfo(NamedTuple):
             self.name_words[0] in {'is', 'are', 'have', 'has', 'can'}
             or self.name_words[:2] == ['check', 'if']
         )
+
+    @property
+    def is_buildin_dundner_method_that_returns_bool(self) -> bool:
+        return self.name.strip('_') in DUNDER_BUILDINS_THAT_RETURNS_BOOL
 
     @property
     def decorators_names(self) -> List[str]:

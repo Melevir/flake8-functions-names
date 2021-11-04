@@ -172,3 +172,22 @@ def test_validate_name_not_endswith_first_argument_name_works_for_different_func
         assert actual_result[0].startswith('FNE008')
     else:
         assert not actual_result
+
+
+@pytest.mark.parametrize(
+    'function_name, arguments, has_error',
+    [
+        ('__exit__', [], False),
+        ('__contains__', [], False),
+    ],
+)
+def test_validate_common_dunder_names_raises_no_error_if_returns_bool(
+    function_name, arguments, has_error,
+    funcdef_factory,
+):
+    funcdef = funcdef_factory(name=function_name, arguments=arguments, return_type='bool')
+    actual_result = validate_returns_bool_and_name_shows_it(funcdef)
+    if has_error:
+        assert len(actual_result) == 1
+    else:
+        assert not actual_result

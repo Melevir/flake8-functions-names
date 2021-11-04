@@ -1,3 +1,12 @@
+DUNDER_BUILDINS_THAT_RETURNS_BOOL = {
+    'contains',
+    'enter',
+    'exit',
+    'bool',
+    'aenter',
+    'aexit',
+}
+
 BLACKLISTED_WORDS_IN_FUNCTIONS_NAMES = {
     'and',
 }
