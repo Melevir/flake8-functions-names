@@ -1,5 +1,6 @@
 import pytest
 
+from flake8_functions_names.checker import FunctionsNamesChecker
 from flake8_functions_names.validators import (
     validate_returns_bool_if_names_said_so,
     validate_has_property_and_no_verbs, validate_save_to, validate_load_from,
@@ -187,6 +188,30 @@ def test_validate_common_dunder_names_raises_no_error_if_returns_bool(
 ):
     funcdef = funcdef_factory(name=function_name, arguments=arguments, return_type='bool')
     actual_result = validate_returns_bool_and_name_shows_it(funcdef)
+    if has_error:
+        assert len(actual_result) == 1
+    else:
+        assert not actual_result
+
+
+@pytest.mark.parametrize(
+    'decorator, has_error',
+    [
+        ('overrides', False),
+        ('overrides.overrides', False),
+        ('property', True),
+    ],
+)
+def test_skips_overriden_methods_if_parameter_checked(
+    decorator, has_error, funcdef_factory,
+):
+    funcdef = funcdef_factory(
+        name='bad_name', arguments=[], return_type='bool', decorator=decorator,
+    )
+    checker = FunctionsNamesChecker(tree=funcdef, filename='test.py')
+    checker.should_skip_overridden_methods = True
+    actual_result = list(checker.run())
+
     if has_error:
         assert len(actual_result) == 1
     else:

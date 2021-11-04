@@ -21,6 +21,13 @@ class FuncdefInfo(NamedTuple):
         return 'property' in self.decorators_names
 
     @property
+    def has_overrides_decorator(self) -> bool:
+        return (
+            'overrides' in self.decorators_names
+            or 'overrides.overrides' in self.decorators_names
+        )
+
+    @property
     def has_deal_pure_decorator(self) -> bool:  # noqa: CFQ003
         return 'pure' in self.decorators_names or 'deal.pure' in self.decorators_names
 
