@@ -180,6 +180,8 @@ def test_validate_name_not_endswith_first_argument_name_works_for_different_func
     [
         ('__exit__', [], False),
         ('__contains__', [], False),
+        ('__eq__', [], False),
+        ('__lt__', [], False),
     ],
 )
 def test_validate_common_dunder_names_raises_no_error_if_returns_bool(

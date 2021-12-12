@@ -5,6 +5,12 @@ DUNDER_BUILDINS_THAT_RETURNS_BOOL = {
     'bool',
     'aenter',
     'aexit',
+    'eq',
+    'ge',
+    'gt',
+    'le',
+    'ne',
+    'lt',
 }
 
 BLACKLISTED_WORDS_IN_FUNCTIONS_NAMES = {
