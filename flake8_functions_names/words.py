@@ -1,3 +1,5 @@
+BOOL_LIKE_RETURN_TYPES = {'bool', 'TypeGuard'}
+
 DUNDER_BUILDINS_THAT_RETURNS_BOOL = {
     'contains',
     'enter',
