@@ -36,7 +36,7 @@ Usage:
 
 ```terminal
 $ flake8 test.py
-text.py:1:35: FNE001 Name of function says, that is should return bool, but it returns str
+text.py:1:35: FNE001 Name of the function says that it should return bool-like, but it returns str
 text.py:4:4: FNE003 Name of the function uses "save", but not uses "to"
 ```
 
@@ -46,11 +46,13 @@ Tested on Python 3.8+ and flake8 3.9+.
 
 | Error code |                     Description          |
 |:----------:|:----------------------------------------:|
-|   FNE001   | Name of the function says, that is should return `bool`, but it returns *actual_type* |
+|   FNE001   | Name of the function says that it should return `bool-like`[^1], but it returns *actual_type* |
 |   FNE002   | The method has a `@property` decorator, but has a verb in it's name (*verb*) |
 |   FNE003   | Name of the function uses `save`, but not uses `to` |
 |   FNE004   | Name of the function uses `load`, but not uses `from` |
-|   FNE005   | Return type of the function is bool, but the name doesn't show it |
+|   FNE005   | Return type of the function is `bool-like`[^1], but the name doesn't show it |
 |   FNE006   | Name of function says, that it works with data, so it should be pure, but it has no `@deal.pure()` |
 |   FNE007   | `and` is not recommended in functions names |
 |   FNE008   | Name of functions ends with it's first argument name |
+
+[^1]: bool-like return types: bool, TypeGuard
