@@ -2,14 +2,16 @@ from typing import List
 
 from flake8_functions_names.custom_types import FuncdefInfo
 from flake8_functions_names.utils.imports import is_module_installed
-from flake8_functions_names.words import VERBS, PURE_VERBS, BLACKLISTED_WORDS_IN_FUNCTIONS_NAMES
+from flake8_functions_names.words import (
+    VERBS, PURE_VERBS, BLACKLISTED_WORDS_IN_FUNCTIONS_NAMES, BOOL_LIKE_RETURN_TYPES,
+)
 
 
-def validate_returns_bool_if_names_said_so(funcdef: FuncdefInfo) -> List[str]:
-    if funcdef.is_name_looks_like_question and funcdef.return_type != 'bool':
+def validate_returns_bool_like_if_names_said_so(funcdef: FuncdefInfo) -> List[str]:
+    if funcdef.is_name_looks_like_question and funcdef.return_type not in BOOL_LIKE_RETURN_TYPES:
         return [
-            f'FNE001 Name of the function says, that is should '
-            f'return bool, but it returns {funcdef.return_type}',
+            'FNE001 Name of the function says that it should'
+            f'return bool-like, but it returns {funcdef.return_type}',
         ]
     return []
 
@@ -40,14 +42,14 @@ def validate_load_from(funcdef: FuncdefInfo) -> List[str]:
     return []
 
 
-def validate_returns_bool_and_name_shows_it(funcdef: FuncdefInfo) -> List[str]:  # noqa: FNE007
+def validate_returns_bool_like_and_name_shows_it(funcdef: FuncdefInfo) -> List[str]:  # noqa: FNE007
     if (
-        funcdef.return_type == 'bool'
+        funcdef.return_type in BOOL_LIKE_RETURN_TYPES
         and not funcdef.is_name_looks_like_question
         and not funcdef.is_buildin_dundner_method_that_returns_bool
     ):
         return [
-            "FNE005 Return type of the function is bool, but the name doesn't show it",
+            "FNE005 Return type of the function is bool-like, but the name doesn't show it",
         ]
     return []
 

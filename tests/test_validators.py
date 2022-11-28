@@ -2,21 +2,23 @@ import pytest
 
 from flake8_functions_names.checker import FunctionsNamesChecker
 from flake8_functions_names.validators import (
-    validate_returns_bool_if_names_said_so,
+    validate_returns_bool_like_if_names_said_so,
     validate_has_property_and_no_verbs, validate_save_to, validate_load_from,
-    validate_returns_bool_and_name_shows_it, validate_names_says_its_pure_and_its_pure,
+    validate_returns_bool_like_and_name_shows_it, validate_names_says_its_pure_and_its_pure,
     validate_no_blacklisted_words_in_name, validate_name_not_endswith_first_argument_name,
 )
 
-
-def test_validate_returns_bool_if_names_said_so_raises_no_error_for_ok_function(fine_funcdef_info):
-    assert not validate_returns_bool_if_names_said_so(fine_funcdef_info)
+BOOL_LIKE_TEST_TYPES = {'bool', 'TypeGuard'}
 
 
-def test_validate_returns_bool_if_names_said_so_raises_error_for_nonbool_result_type(
+def test_validate_returns_bool_like_if_names_said_so_raises_no_error_for_ok_function(fine_funcdef_info):
+    assert not validate_returns_bool_like_if_names_said_so(fine_funcdef_info)
+
+
+def test_validate_returns_bool_like_if_names_said_so_raises_error_for_nonbool_result_type(
     funcdef_for_bool_without_bool_result,
 ):
-    actual_result = validate_returns_bool_if_names_said_so(funcdef_for_bool_without_bool_result)
+    actual_result = validate_returns_bool_like_if_names_said_so(funcdef_for_bool_without_bool_result)
     assert len(actual_result) == 1
     assert actual_result[0].startswith('FNE001')
 
@@ -79,12 +81,14 @@ def test_validate_load_from_raises_error_for_load_without_from(
         'check_if_user_is_active',
     ],
 )
-def test_validate_returns_bool_and_name_shows_it_raises_no_error_for_ok_function(
+@pytest.mark.parametrize('return_type', BOOL_LIKE_TEST_TYPES)
+def test_validate_returns_bool_like_and_name_shows_it_raises_no_error_for_ok_function(
     function_name,
+    return_type,
     funcdef_factory,
 ):
-    funcdef = funcdef_factory(name=function_name, return_type='bool')
-    assert not validate_returns_bool_and_name_shows_it(funcdef)
+    funcdef = funcdef_factory(name=function_name, return_type=return_type)
+    assert not validate_returns_bool_like_and_name_shows_it(funcdef)
 
 
 @pytest.mark.parametrize(
@@ -97,12 +101,14 @@ def test_validate_returns_bool_and_name_shows_it_raises_no_error_for_ok_function
         'if_user_is_active',
     ],
 )
-def test_validate_returns_bool_and_name_shows_it_raises_error_for_nonbool_names(
+@pytest.mark.parametrize('return_type', BOOL_LIKE_TEST_TYPES)
+def test_validate_returns_bool_like_and_name_shows_it_raises_error_for_nonbool_names(
     function_name,
+    return_type,
     funcdef_factory,
 ):
-    funcdef = funcdef_factory(name=function_name, return_type='bool')
-    actual_result = validate_returns_bool_and_name_shows_it(funcdef)
+    funcdef = funcdef_factory(name=function_name, return_type=return_type)
+    actual_result = validate_returns_bool_like_and_name_shows_it(funcdef)
     assert len(actual_result) == 1
     assert actual_result[0].startswith('FNE005')
 
@@ -189,7 +195,7 @@ def test_validate_common_dunder_names_raises_no_error_if_returns_bool(
     funcdef_factory,
 ):
     funcdef = funcdef_factory(name=function_name, arguments=arguments, return_type='bool')
-    actual_result = validate_returns_bool_and_name_shows_it(funcdef)
+    actual_result = validate_returns_bool_like_and_name_shows_it(funcdef)
     if has_error:
         assert len(actual_result) == 1
     else:
